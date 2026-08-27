@@ -975,6 +975,20 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	margin-block: 0 !important;
 }
 
+/* Recipient pills: Thunderbird darkens them with rgba(0,0,0,.3), which on the
+   near-black field gives a 1.09:1 contrast (invisible). Use a text-tinted
+   fill instead (same brightness as the theme's dark buttons, adapts to
+   light/dark). Slightly smaller radius than the 3px field so the corners
+   nest instead of competing. Hover/selected/error states keep Thunderbird's
+   styling. */
+.address-pill {
+	border-radius: 2px !important;
+}
+
+.address-pill:not(.editing, .invalid-address, .key-issue, [selected]) {
+	background-color: color-mix(in srgb, currentColor 12%, transparent) !important;
+}
+
 #identityLabel-box,
 #subjectLabel-box,
 .address-label-container {
