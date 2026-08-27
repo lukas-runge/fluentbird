@@ -413,12 +413,12 @@ button .thread-replies {
 /* Card layout: one line for twisty | subject | attachment/star, using
    Thunderbird's own compact-card template. The thread twisty (chevron only,
    reply count hidden above) sits vertically centered in front of the
-   subject; for non-thread rows its column collapses to 0 and the fixed 3px
-   column gap matches the sender's 3px padding, so subject and sender stay
-   aligned in every density (Thunderbird's gap would be 1px in compact). */
+   subject; for non-thread rows its column collapses to 0 and, with no
+   column gap, the subject starts flush with the sender (which has no
+   padding either). The twisty's own 3px padding keeps it off the subject. */
 .thread-card-dynamic-row {
 	grid-template: "button subject info" max-content / auto 1fr auto !important;
-	gap: 0 3px !important;
+	gap: 0 !important;
 	padding-bottom: 0 !important;
 	margin-bottom: 0 !important;
 }
@@ -434,15 +434,20 @@ button .thread-replies {
 	padding-inline-start: 0 !important;
 }
 
-/* Sender name */
+/* Sender name. The 8px top margin centers the two text lines optically in
+   the fixed card height: ~13px from the card edge to the sender's cap
+   height and ~13px from the subject's baseline to the bottom edge
+   (descenders hang into the air below, as they should). */
 .sender {
 	font-size: 1.15rem !important;
 	font-weight: 500 !important;
 	margin-top: 8px !important;
 }
 
+/* No extra inline padding: the invisible 12px read-status column alone puts
+   the text 12px from the card edge, matching the vertical air. */
 & .card-container .sender {
-	padding-inline-start: 3px !important;
+	padding-inline-start: 0 !important;
 }
 
 /* Compact sender text for short-height cards */
