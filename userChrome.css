@@ -474,9 +474,29 @@ tr.card-layout.children span.subject {
 	margin-left: 0 !important;
 }
 
-/* Unread indicator inline offset */
-#threadTree[rows="thread-card"] .card-layout td .card-container::before {
-	inset-inline-start: calc(var(--indicator-width) * 2 - var(--indicator-gap)) !important;
+/* Unread cards, Outlook-style: bold sender, accent-colored subject and a
+   short accent bar at the card's start edge. Thunderbird's green dot stays
+   hidden (above); the bar sits in the dot's empty column. */
+:root {
+	--fb-unread-accent: #2065b0;
+}
+
+#threadTree[rows="thread-card"] .card-layout[data-properties~="unread"] .card-container .sender {
+	font-weight: 700 !important;
+}
+
+#threadTree[rows="thread-card"] .card-layout[data-properties~="unread"] .card-container :is(.thread-card-subject-container, .subject) {
+	color: var(--fb-unread-accent) !important;
+}
+
+#threadTree[rows="thread-card"] .card-layout[data-properties~="unread"] .card-container::before {
+	content: "";
+	position: absolute;
+	inset-inline-start: 4px;
+	inset-block: 25%;
+	width: 3px;
+	border-radius: 2px;
+	background-color: var(--fb-unread-accent);
 }
 
 /* Cards: 6px of space between cards and to the list edge alike (Thunderbird:
@@ -1312,6 +1332,7 @@ global-search-bar {
 	   the near-black pane; hover/current derive from this via color-mix. */
 	:root {
 		--tree-card-background: #212124 !important;
+		--fb-unread-accent: #7cb8fa;
 	}
 
 	/* Selected card keeps the same color whether or not the list has focus;
