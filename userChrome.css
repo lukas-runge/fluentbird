@@ -508,6 +508,14 @@ tr.table-layout.selected.current {
 	margin-top: -15px;
 }
 
+/* Card view: more room around the date in the first card row. Thunderbird's
+   3px row gap looks tighter before the date because the state icons
+   (replied/forwarded) fill their box edge to edge; the kebab button after
+   the date gets a bit of extra room as well. */
+.thread-card-row > .date {
+	margin-inline: 6px 4px !important;
+}
+
 /* Grouped-by-sort child rows */
 tree-view[data-show-grouped-by-sort="true"] .card-layout.children {
 	height: 30px !important;
