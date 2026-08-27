@@ -956,6 +956,25 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	align-items: start !important;
 }
 
+/* Uniform vertical rhythm: Thunderbird gives recipient rows margin-block 6px
+   (12px between two of them, 6px next to the From/Subject rows, which have
+   none). Use one 8px grid gap everywhere instead. The 2px bottom padding
+   plus the format toolbar's own spacing adds up to the same 8px. */
+#MsgHeadersToolbar,
+#recipientsContainer {
+	row-gap: 8px !important;
+}
+
+#MsgHeadersToolbar {
+	padding-block: 8px 2px !important;
+}
+
+#top-gradient-box,
+#recipientsContainer > .address-row,
+#subject-box {
+	margin-block: 0 !important;
+}
+
 #identityLabel-box,
 #subjectLabel-box,
 .address-label-container {
