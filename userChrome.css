@@ -885,6 +885,33 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 
 
 /* =====================================================
+   COMPOSE WINDOW
+   ===================================================== */
+
+/* Main compose toolbar (icons beside text): same spacing principle as the
+   message header buttons. Thunderbird's icon box here is 18px with ~3px of
+   whitespace around the glyph, so the start padding is 5px for an optical
+   8px, and the text sits 3px from the icon box for an optical ~6px gap. */
+#composeToolbar2 .toolbarbutton-icon {
+	margin-inline: 0 !important;
+}
+
+#composeToolbar2 .toolbarbutton-1:not([is="toolbarbutton-menu-button"], [type="menu"]),
+#composeToolbar2 .toolbarbutton-1 > .toolbarbutton-menubutton-button {
+	padding-inline: 5px 8px !important;
+}
+
+/* Plain menu buttons keep Thunderbird's end padding for the dropdown arrow */
+#composeToolbar2 .toolbarbutton-1[type="menu"]:not([is="toolbarbutton-menu-button"]) {
+	padding-inline-start: 5px !important;
+}
+
+#composeToolbar2 .toolbarbutton-1 .toolbarbutton-text {
+	padding-inline: 3px 0 !important;
+}
+
+
+/* =====================================================
    SEARCH BAR
    ===================================================== */
 
