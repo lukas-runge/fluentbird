@@ -896,6 +896,111 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	padding-inline: 3px 0 !important;
 }
 
+/* Dynamic label column in the compose header.
+   Thunderbird gives every label box an inline width of 9em (from the locale
+   file) so that "Blindkopie (BCC)" fits even while that row is hidden, which
+   leaves a block of empty space left of From/To/Subject. Turn the header
+   into one grid with shared columns (subgrid) instead, so the label column
+   is exactly as wide as the widest *visible* label.
+   Columns: label | identity menu | extra buttons / field continuation.
+   Fields span the last two columns. The 28px column Thunderbird reserves
+   for the row's remove button is dropped; that button is instead overlaid
+   at the end of its row (see below).
+   Thunderbird scrolls only #recipientsContainer when the header runs out of
+   space, but a scroll container cannot be a subgrid. So the whole header
+   scrolls instead: this grid becomes the scroll container, and its rows are
+   all min-content so nothing inside is clamped and overlaps.
+   Its height is set explicitly to min(content, 50vh), and the "headers" row
+   of #composeContentBox is sized min-content instead of Thunderbird's
+   minmax(auto, --headersSplitter-height): as a scroll container the header
+   would otherwise only contribute its JS-set min-height as grid base size
+   and, once shrunk, never grow back when the window is enlarged (the track
+   would also stay smaller than the header and let the format toolbar and
+   body overlap it). Side effect: the headers splitter cannot shrink the
+   header below its content height anymore. */
+#composeContentBox {
+	grid-template-rows: min-content min-content min-content minmax(33%, 1fr) min-content min-content !important;
+}
+
+#MsgHeadersToolbar {
+	grid-template-columns: max-content minmax(0, max-content) minmax(0, 1fr) !important;
+	grid-template-rows: min-content min-content min-content !important;
+	height: max-content !important;
+	max-height: 50vh !important;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+	padding-inline-start: 8px !important;
+}
+
+#top-gradient-box,
+#recipientsContainer,
+#recipientsContainer > .address-row:not(.hidden),
+#subject-box {
+	display: grid !important;
+	grid-template-columns: subgrid !important;
+	grid-column: 1 / -1 !important;
+}
+
+/* A scroll container cannot be a subgrid (scrolling moved to the header) */
+#top-gradient-box,
+#recipientsContainer {
+	overflow: visible !important;
+}
+
+#top-gradient-box,
+#subject-box {
+	align-items: center !important;
+}
+
+#recipientsContainer > .address-row:not(.hidden) {
+	align-items: start !important;
+}
+
+#identityLabel-box,
+#subjectLabel-box,
+.address-label-container {
+	width: auto !important;
+	min-width: 0 !important;
+}
+
+#msgIdentity {
+	grid-column: 2 !important;
+	justify-self: start !important;
+	min-width: 0 !important;
+}
+
+#extraAddressRowsArea {
+	grid-column: 3 !important;
+	justify-self: start !important;
+}
+
+.address-row > .address-container,
+#msgSubjectContainer {
+	grid-column: 2 / -1 !important;
+}
+
+/* Remove-button box: hidden where it is always empty (From/Subject rows),
+   overlaid at the end of recipient rows so it takes no column of its own.
+   Thunderbird still fades it in on row hover/focus. */
+#top-gradient-box > .aw-firstColBox,
+#subject-box > .aw-firstColBox {
+	display: none !important;
+}
+
+#recipientsContainer > .address-row {
+	position: relative !important;
+}
+
+#recipientsContainer > .address-row > .aw-firstColBox {
+	position: absolute !important;
+	inset-inline-end: 0 !important;
+	inset-block: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	z-index: 1 !important;
+}
+
 
 /* =====================================================
    SEARCH BAR
