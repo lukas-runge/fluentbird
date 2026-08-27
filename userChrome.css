@@ -503,15 +503,9 @@ tr.card-layout.children span.subject {
 	background-color: transparent !important;
 }
 
+/* Selected card keeps the same color whether or not the list has focus */
 [is="tree-view-table-body"] .card-layout.selected.current .card-container {
 	background-color: #cde6f7 !important;
-	border: 1px solid #bfbfbf !important;
-}
-
-/* Unfocused selected card */
-#threadTree[rows="thread-card"]:not(:focus, :focus-within) .card-layout.selected.current .card-container,
-#threadTree[rows="thread-card"]:not(:focus, :focus-within) .card-layout[data-properties~="junk"].selected.current .card-container {
-	background-color: #e1e1e1 !important;
 	border: 1px solid #bfbfbf !important;
 }
 
@@ -1312,13 +1306,6 @@ global-search-bar {
 	:is(ul, ol)[role="tree"] li.selected.current > .container {
 		border-color: #515151 !important;
 		background-color: #515151 !important;
-	}
-
-	/* Unfocused selected card */
-	#threadTree[rows="thread-card"]:not(:focus, :focus-within) .card-layout.selected.current .card-container,
-	#threadTree[rows="thread-card"]:not(:focus, :focus-within) .card-layout[data-properties~="junk"].selected.current .card-container {
-		background-color: #515151 !important;
-		border: 1px solid #1f1f1f !important;
 	}
 
 	/* Focused selected card */
