@@ -410,28 +410,28 @@ button .thread-replies {
 	display: none !important;
 }
 
-/* Subject indent for child rows with replies */
-tr.children .thread-card-button:has(.thread-replies[data-l10n-id]) ~ .thread-card-subject-container .subject {
-	margin-left: 15px !important;
-}
-
-/* Card layout spacing */
+/* Card layout: one line for twisty | subject | attachment/star, using
+   Thunderbird's own compact-card template. The thread twisty (chevron only,
+   reply count hidden above) sits vertically centered in front of the
+   subject; for non-thread rows its column collapses to 0 and the fixed 3px
+   column gap matches the sender's 3px padding, so subject and sender stay
+   aligned in every density (Thunderbird's gap would be 1px in compact). */
 .thread-card-dynamic-row {
-	gap: 0px !important;
-	row-gap: 0px !important;
-	padding-bottom: 0px !important;
-	margin-bottom: 0px !important;
+	grid-template: "button subject info" max-content / auto 1fr auto !important;
+	gap: 0 3px !important;
+	padding-bottom: 0 !important;
+	margin-bottom: 0 !important;
 }
 
 .thread-card-dynamic-row > .thread-card-button {
-	align-self: end !important;
+	align-self: center !important;
 }
 
 /* Card subject text */
 .thread-card-subject-container {
 	color: #606060;
 	font-size: 0.96rem !important;
-	width: 85%;
+	padding-inline-start: 0 !important;
 }
 
 /* Sender name */
@@ -499,15 +499,6 @@ tr.table-layout.selected.current {
 	color: #45a0ef !important;
 }
 
-/* Twisty button position fix */
-.button.button-flat.button-reset.twisty.thread-card-button {
-	margin-top: -38px !important;
-}
-
-.thread-card-icon-info {
-	margin-top: -15px;
-}
-
 /* Card view: more room around the date in the first card row. Thunderbird's
    3px row gap looks tighter before the date because the state icons
    (replied/forwarded) fill their box edge to edge; the kebab button after
@@ -543,12 +534,8 @@ tree-view[data-show-grouped-by-sort="true"] .card-layout.children *:hover {
 }
 
 /* Group header row (e.g. "Today", "Yesterday") — fix missing/misplaced
-   twisty and vertical centering.
-   The "Twisty button position fix" rule above only matches buttons that
-   carry a .button-reset class, which current Thunderbird card twisties
-   don't have — so it silently never applied here. Rather than guess at
-   another magic offset, this rebuilds the header row as a single
-   flex-centered line so the twisty and label sit correctly at any row
+   twisty and vertical centering by rebuilding the header row as a single
+   flex-centered line, so the twisty and label sit correctly at any row
    height (compact or cozy). */
 tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dummy"] td {
 	height: 100% !important;
@@ -580,8 +567,8 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	padding: 0 !important;
 }
 
-/* Override the site-wide "align-self: end" rule for just this row, and
-   make sure the button/icon aren't clipped by the compact height */
+/* Override the card-wide twisty alignment for just this row, and make
+   sure the button/icon aren't clipped by the compact height */
 tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dummy"] .thread-card-dynamic-row > .thread-card-button {
 	align-self: center !important;
 	margin: 0 !important;
