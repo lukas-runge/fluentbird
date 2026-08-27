@@ -630,6 +630,23 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	margin-top: 5px !important;
 }
 
+/* Sender box: even 4px padding around the 45px avatar (Thunderbird's 2px
+   offset is sized for its 26px avatar). The list shifts left by the same
+   amount so the avatar stays aligned with the To/Cc rows below, and drops
+   the 5px top margin so the box sits as close to the top as to the side. */
+#expandedfromBox .recipients-list {
+	margin-top: 0 !important;
+	margin-inline-start: -4px !important;
+}
+
+#expandedfromBox .header-recipient {
+	padding: 4px !important;
+}
+
+#expandedfromBox .recipient-avatar {
+	margin-block-start: 0 !important;
+}
+
 .recipient-multi-line-name {
 	font-size: 1.4rem !important;
 }
