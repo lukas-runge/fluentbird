@@ -713,7 +713,8 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	border-color: #ececee !important;
 }
 
-#hdrReplyAllButton, #hdrReplyListButton {
+#hdrReplyAllButton, #hdrReplyListButton,
+#attachmentSaveAllSingle, #attachmentSaveAllMultiple {
 	border-radius: var(--button-border-radius) !important;
 }
 
@@ -721,7 +722,11 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 #hdrReplyAllButton .toolbarbutton-menubutton-dropmarker,
 #hdrReplyListButton .toolbarbutton-menubutton-button,
 #hdrReplyListButton .toolbarbutton-menubutton-dropmarker,
-#hdrReplyListButton {
+#hdrReplyListButton,
+#attachmentSaveAllSingle .toolbarbutton-menubutton-button,
+#attachmentSaveAllSingle .toolbarbutton-menubutton-dropmarker,
+#attachmentSaveAllMultiple .toolbarbutton-menubutton-button,
+#attachmentSaveAllMultiple .toolbarbutton-menubutton-dropmarker {
 	border-color: #ececee !important;
 }
 
@@ -738,7 +743,8 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
    Icon glyphs have ~2px of whitespace inside their 16px box, so the
    start padding is 2px smaller to balance the ink against the end padding. */
 #messageHeader:not(.message-header-buttons-only-icons) .message-header-view-button:not([is="toolbarbutton-menu-button"]),
-#messageHeader:not(.message-header-buttons-only-icons) .message-header-view-button > .toolbarbutton-menubutton-button {
+#messageHeader:not(.message-header-buttons-only-icons) .message-header-view-button > .toolbarbutton-menubutton-button,
+#attachmentView .message-header-view-button > .toolbarbutton-menubutton-button {
 	padding-inline: 6px 8px !important;
 }
 
@@ -843,6 +849,19 @@ tree-view[data-show-grouped-by-sort="true"] tr.card-layout[data-properties~="dum
 	mask-size: 16px 16px !important;
 	mask-position: center !important;
 	background-color: #8785a3 !important;
+	width: 16px !important;
+	height: 16px !important;
+}
+
+/* Attachment bar "Save" / "Save all" buttons (same treatment as header buttons) */
+#attachmentSaveAllSingle .toolbarbutton-icon,
+#attachmentSaveAllMultiple .toolbarbutton-icon {
+	list-style-image: none !important;
+	mask-image: url("Icons/download.svg") !important;
+	mask-repeat: no-repeat !important;
+	mask-size: 16px 16px !important;
+	mask-position: center !important;
+	background-color: #1e8bcd !important;
 	width: 16px !important;
 	height: 16px !important;
 }
@@ -1121,7 +1140,11 @@ global-search-bar {
 	#hdrReplyAllButton .toolbarbutton-menubutton-button,
 	#hdrReplyAllButton .toolbarbutton-menubutton-dropmarker,
 	#hdrReplyListButton .toolbarbutton-menubutton-button,
-	#hdrReplyListButton .toolbarbutton-menubutton-dropmarker {
+	#hdrReplyListButton .toolbarbutton-menubutton-dropmarker,
+	#attachmentSaveAllSingle .toolbarbutton-menubutton-button,
+	#attachmentSaveAllSingle .toolbarbutton-menubutton-dropmarker,
+	#attachmentSaveAllMultiple .toolbarbutton-menubutton-button,
+	#attachmentSaveAllMultiple .toolbarbutton-menubutton-dropmarker {
 		border-color: #1f1f1f !important;
 	}
 
