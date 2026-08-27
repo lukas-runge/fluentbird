@@ -434,14 +434,15 @@ button .thread-replies {
 	padding-inline-start: 0 !important;
 }
 
-/* Sender name. The 8px top margin centers the two text lines optically in
-   the fixed card height: ~13px from the card edge to the sender's cap
-   height and ~13px from the subject's baseline to the bottom edge
-   (descenders hang into the air below, as they should). */
+/* Sender name. The 6px top margin centers the two text lines optically in
+   the fixed card height (4px shorter since the 6px card spacing): ~12px
+   from the card edge to the sender's cap height and ~12px from the
+   subject's baseline to the bottom edge (descenders hang into the air
+   below, as they should). */
 .sender {
 	font-size: 1.15rem !important;
 	font-weight: 500 !important;
-	margin-top: 8px !important;
+	margin-top: 6px !important;
 }
 
 /* No extra inline padding: the invisible 12px read-status column alone puts
@@ -476,6 +477,19 @@ tr.card-layout.children span.subject {
 /* Unread indicator inline offset */
 #threadTree[rows="thread-card"] .card-layout td .card-container::before {
 	inset-inline-start: calc(var(--indicator-width) * 2 - var(--indicator-gap)) !important;
+}
+
+/* Cards: 6px of space between cards and to the list edge alike (Thunderbird:
+   2×1px between cards in compact, 3px to the edge). The row height is fixed
+   by Thunderbird's JS, so the card itself gets 4px shorter. */
+#threadTree[rows="thread-card"] .card-layout > td {
+	padding-block: 3px !important;
+	padding-inline-end: 6px !important;
+}
+
+/* Thread children keep Thunderbird's larger start padding (their indent) */
+#threadTree[rows="thread-card"] .card-layout:not([data-properties~="thread-children"]) > td {
+	padding-inline-start: 6px !important;
 }
 
 /* Cards: no outline in the resting state. Hover, focus and selection set
