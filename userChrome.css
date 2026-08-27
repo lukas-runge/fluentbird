@@ -516,6 +516,13 @@ tr.table-layout.selected.current {
 	margin-inline: 6px 4px !important;
 }
 
+/* Card view: the star fills its 16px box edge to edge while the kebab
+   button above it is only a 3px-wide glyph, so the star looked glued to
+   the card edge. Pull it in so both glyphs end on roughly the same line. */
+.thread-card-icon-info > .tree-button-flag {
+	margin-inline-end: 8px !important;
+}
+
 /* Grouped-by-sort child rows */
 tree-view[data-show-grouped-by-sort="true"] .card-layout.children {
 	height: 30px !important;
