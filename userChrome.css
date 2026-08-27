@@ -478,6 +478,12 @@ tr.card-layout.children span.subject {
 	inset-inline-start: calc(var(--indicator-width) * 2 - var(--indicator-gap)) !important;
 }
 
+/* Cards: no outline in the resting state. Hover, focus and selection set
+   their own --tree-card-border on the row, so those keep their borders. */
+:root {
+	--tree-card-border: transparent !important;
+}
+
 /* Remove row highlight behind cards; apply highlight to card itself */
 [is="tree-view-table-body"] tr.selected.current {
 	background-color: transparent !important;
